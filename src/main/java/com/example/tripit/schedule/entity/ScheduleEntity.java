@@ -1,42 +1,47 @@
 package com.example.tripit.schedule.entity;
 
+import com.example.tripit.community.entity.PostEntity;
+import com.example.tripit.user.entity.UserEntity;
 import jakarta.persistence.*;
 import lombok.*;
-import org.springframework.format.annotation.DateTimeFormat;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 @Getter
+@Setter
 @Builder
-@ToString
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity(name = "SCHEDULE")
+@Entity
+@Table(name = "SCHEDULE")
 public class ScheduleEntity {
 
     @Id //PK 값 지정
     @GeneratedValue(strategy = GenerationType.IDENTITY) //PK 값 DB에서 자동 생성
-    private Long schedule_id;
+    @Column(name = "schedule_id")
+    private Long scheduleId;
 
-    @Column
-    private String metro_id;
+    @Column(nullable = false, name = "metro_id")
+    private String metroId;
 
-    @Column
-    private Long user_id;
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private UserEntity user;
 
-    @Column
-    @Temporal(TemporalType.DATE) //날짜부분만 저장
-    private Date start_date;
+    @Column(nullable = false, name = "start_date")
+    private LocalDate startDate;
 
-    @Column
-    @Temporal(TemporalType.DATE) //날짜부분만 저장
-    private Date start_end;
+    @Column(nullable = false, name = "end_date")
+    private LocalDate endDate;
 
-    @Column
-    @Temporal(TemporalType.TIMESTAMP) //날짜와 시간 저장
-    private Date register_date;
+    @Column(nullable = false, name = "register_date")
+    private LocalDate registerDate;
 
-    @Column
-    private String schedule_title;
+    @Column(nullable = false, name = "schedule_title")
+    private String scheduleTitle;
+
+    @OneToMany(mappedBy = "scheduleId", cascade = CascadeType.ALL, orphanRemoval = true)
+    private List<PostEntity> PostEntity;
 
 }
