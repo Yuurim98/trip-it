@@ -38,3 +38,7 @@ out/
 ### VS Code ###
 .vscode/
 
+# Ignore macOS system files
+.DS_Store
+**/.DS_Store/**
+
