@@ -1,13 +1,11 @@
 package com.example.tripit.community.repository;
 
-<<<<<<< HEAD
 import com.example.tripit.community.dto.CommunityDTO;
 import com.example.tripit.community.entity.PostEntity;
 import com.example.tripit.user.entity.UserEntity;
-=======
 import java.util.List;
 
->>>>>>> chat
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
